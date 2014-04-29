@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script data-require="ng-table@*" data-semver="0.3.0" src="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.js"></script>
+    <script data-require="angular-mocks@1.2.0-rc3" data-semver="1.2.0-rc3" src="//code.angularjs.org/1.2.0-rc.3/angular-mocks.js"></script>
+    <script data-require="angular-resource@1.2.0-rc.3" data-semver="1.2.0-rc.3" src="http://code.angularjs.org/1.2.0-rc.3/angular-resource.js"></script>
+    <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.css" />
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="../css/main.table.css" />
+    <script src="../js/main.table.mock.js"></script>
+    <script src="../js/main.table.js"></script>
+    <script src="../js/loadingContainer.js"></script>
+
+</head>
+
+<body ng-app="main" ng-controller="TableCtrl">
+<button ng-click="tableParams.reload()" class="btn btn-default">Reload</button>
+<button ng-click="tableParams.sorting({})" class="btn btn-default">Clear sorting</button>
+<button ng-click="newDialog()" class="btn btn-default">New Row</button>
+<div class="clearfix"></div>
+<div loading-container="tableParams.settings().$loading">
+    <table ng-table="tableParams" show-filter="true" class="table">
+        <tbody>
+        <tr ng-repeat="user in $data">
+            <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="name">
+                {{user.name}}
+            </td>
+            <td data-title="'Age'" filter="{ 'age': 'text' }" sortable="age">
+                {{user.age}}
+            </td>
+            <td>
+                <button ng-click="removeMe()">Remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div newrow>
+    <input type="text">
+</div>
+
+
+</body>
+
+</html>
